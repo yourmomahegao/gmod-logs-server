@@ -1,0 +1,3 @@
+#!/bin/bash
+
+docker exec -it glogs bash -c "python3 /usr/src/gmod-logs-server/gmodlogs/manage.py collectstatic --noinput"

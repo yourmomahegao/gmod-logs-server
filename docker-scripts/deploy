@@ -1,0 +1,19 @@
+#!/bin/bash
+
+echo -e "\033[1;34m1. Loading Docker image...\033[0m"
+./docker-scripts/load-docker
+
+echo -e "\033[1;33m2. Stopping existing container...\033[0m"
+./docker-scripts/kill-docker
+
+echo -e "\033[1;35m3. Starting new container...\033[0m"
+./docker-scripts/run-docker
+
+echo -e "\033[1;31m4. Collecting static files...\033[0m"
+./docker-scripts/collect-static
+
+echo -e "\033[1;33m5. Restarting container...\033[0m"
+./docker-scripts/restart-docker
+
+echo ""
+echo -e "\033[1;32mDeployment complete!\033[0m"

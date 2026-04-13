@@ -1,0 +1,103 @@
+{% load static %} {% load sass_tags %}
+
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Garry's Mod Logs</title>
+
+    <link rel="icon" href="{% static 'lib/icons/favicon.png' %}" type="image/png" />
+
+    <link rel="stylesheet" href="{% sass_src 'lib/css/variables.scss' %}" />
+    <link rel="stylesheet" href="{% sass_src 'lib/css/global.scss' %}" />
+    <link rel="stylesheet" href="{% sass_src 'index/css/index.scss' %}" />
+
+    <script src="{% static 'lib/js/jquery.js' %}"></script>
+    <script src="{% static 'lib/js/cookies.js' %}"></script>
+    <script src="{% static 'lib/js/better-ajax.js' %}"></script>
+    <script src="{% static 'lib/js/loading.js' %}"></script>
+    <script src="{% static 'lib/js/notifications.js' %}"></script>
+    <script src="{% static 'lib/js/timezones.js' %}"></script>
+    <script src="{% static 'lib/js/theme.js' %}"></script>
+    <script src="{% static 'index/js/logs.js' %}"></script>
+    <script src="{% static 'index/js/main.js' %}"></script>
+  </head>
+  <body>
+    <div class="logs-container">
+      <div class="logs-search-bar">
+        <div class="search">
+          <svg class="search-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-search-icon lucide-search">
+            <path d="m21 21-4.34-4.34" />
+            <circle cx="11" cy="11" r="8" />
+          </svg>
+
+          <input class="search-input" type="text" placeholder="Поиск" />
+        </div>
+
+        <div class="logs-filters hidden">
+          <div class="logs-filters-title">Поиск по</div>
+          <div class="logs-filters-data find-by">
+            <div class="logs-filter-checkbox steamid" data-field="steam_id">
+              <span>SteamID</span>              
+              <input type="checkbox"></input>
+            </div>
+
+            <div class="logs-filter-checkbox steamid64" data-field="steam_id64">
+              <span>SteamID64</span>              
+              <input type="checkbox"></input>
+            </div>
+
+            <div class="logs-filter-checkbox nickname" data-field="nickname">
+              <span>Никнейм</span>              
+              <input type="checkbox"></input>
+            </div>
+
+            <div class="logs-filter-checkbox data" data-field="data">
+              <span>Информация</span>              
+              <input type="checkbox"></input>
+            </div>
+          </div>
+
+          <div class="logs-filters-title">Тип</div>
+          <div class="logs-filters-data types">
+          </div>
+
+          <div class="logs-filters-title">Действие</div>
+          <div class="logs-filters-data actions"></div>
+
+          <div class="logs-filters-title">Дата</div>
+          <div class="logs-filters-data datetimes">
+            <span>с</span>
+            <div class="logs-filter-datetime start-datetime">           
+              <input type="datetime-local"></input>
+            </div>
+
+            <span>по</span>
+            <div class="logs-filter-datetime end-datetime">          
+              <input type="datetime-local"></input>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="logs-table-container">
+        <table class="logs-table">
+          <thead>
+            <tr>
+              <th>SteamID</th>
+              <th>SteamID64</th>
+              <th>Игрок</th>
+              <th>Тип</th>
+              <th>Действие</th>
+              <th>Информация</th>
+              <th>Дата</th>
+            </tr>
+          </thead>
+          <tbody>
+          </tbody>
+        </table>
+      </div>
+
+    </div>
+  </body>
+</html>

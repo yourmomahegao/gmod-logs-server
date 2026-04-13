@@ -1,0 +1,142 @@
+@font-face {
+  font-family: 'Onest';
+  src: url('../fonts/Onest/WOFF/OnestThin1602-hint.woff') format('woff');
+  font-weight: 100;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Onest';
+  src: url('../fonts/Onest/WOFF/OnestLight1602-hint.woff') format('woff');
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Onest';
+  src: url('../fonts/Onest/WOFF/OnestRegular1602-hint.woff') format('woff');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Onest';
+  src: url('../fonts/Onest/WOFF/OnestMedium1602-hint.woff') format('woff');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Onest';
+  src: url('../fonts/Onest/WOFF/OnestBold1602-hint.woff') format('woff');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Onest';
+  src: url('../fonts/Onest/WOFF/OnestExtraBold1602-hint.woff') format('woff');
+  font-weight: 800;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Onest';
+  src: url('../fonts/Onest/WOFF/OnestBlack1602-hint.woff') format('woff');
+  font-weight: 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+
+* {
+  -webkit-tap-highlight-color: transparent;
+  font-size: var(--font-m);
+  font-family: "Onest", sans-serif;
+  font-weight: var(--font-weight-normal);
+  letter-spacing: 0.03em;
+
+  // Font smoothing and anti-aliasing for better small text rendering
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  font-variant-ligatures: none;
+  font-feature-settings: "kern" 1;
+}
+
+body.no-startup-animation,
+body.no-startup-animation * {
+  transition: none !important;
+}
+
+html,
+body {
+  position: relative;
+
+  width: 100%;
+  height: 100%;
+
+  padding: 0;
+  margin: 0;
+
+  font-size: var(--font-m);
+  font-family: "Onest", sans-serif;
+  font-weight: var(--font-weight-normal);
+  letter-spacing: 0.03em;
+
+  background-color: var(--bg);
+  color: var(--text);
+
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+  flex-direction: column;
+
+  // Enhanced font rendering for all text sizes
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  font-variant-ligatures: none;
+  font-feature-settings: "kern" 1;
+
+  // Subpixel rendering for crisp small text
+  text-size-adjust: 100%;
+  -webkit-text-size-adjust: 100%;
+  -ms-text-size-adjust: 100%;
+
+  overflow: hidden;
+}
+
+body::-webkit-scrollbar {
+  width: 1em;
+}
+
+*::-webkit-scrollbar-corner {
+  background-color: transparent;
+}
+
+body::-webkit-scrollbar-thumb {
+  background-color: var(--text);
+
+  border: 4px solid transparent;
+  border-radius: 8px;
+  background-clip: padding-box;
+}
+
+body *::-webkit-scrollbar {
+  width: 1em;
+}
+
+body *::-webkit-scrollbar-thumb {
+  background-color: var(--text);
+
+  border: 4px solid transparent;
+  border-radius: 8px;
+  background-clip: padding-box;
+}

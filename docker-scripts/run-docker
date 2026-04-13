@@ -1,0 +1,6 @@
+#!/bin/bash
+
+docker run -it -d \
+  -p 49263:80 \
+  --name=glogs \
+  gmodlogs
