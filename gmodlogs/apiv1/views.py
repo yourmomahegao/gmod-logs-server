@@ -157,16 +157,5 @@ def save_log(request, post_args=None):
                          (steam_id, steam_id64, nickname, data, type_id, action_id, insertion_datetime)
                      VALUES
                          (%s, %s, %s, %s, %s, %s, CURRENT_TIMESTAMP)""", args=(steam_id, steam_id64, nickname, data, type_id, action_id), connection="default")
-        
-        run_query("""DELETE FROM gmodlogs_log
-                     WHERE id IN (
-                         SELECT id
-                         FROM (
-                             SELECT id
-                             FROM gmodlogs_log
-                             ORDER BY insertion_datetime ASC
-                             LIMIT 1000000000 OFFSET 1000000
-                         ) AS t
-                     );""", connection="default")
 
         return SafeJsonResponse({"status": True, "message": "Лог сохранен"})

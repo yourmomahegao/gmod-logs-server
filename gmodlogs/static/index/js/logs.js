@@ -86,6 +86,24 @@ class Logs {
     return null;
   }
 
+  static FormatDateRussian(dateString) {
+    const date = new Date(dateString);
+
+    const hours = date.getHours();
+    const minutes = date.getMinutes();
+    const seconds = date.getSeconds();
+
+    const day = date.getDate();
+    const month = date.getMonth(); // 0–11
+    const year = date.getFullYear();
+
+    // Format with leading zeros
+    const dayFormatted = String(day).padStart(2, "0");
+    const monthFormatted = String(month + 1).padStart(2, "0");
+
+    return `${String(hours).padStart(2, '0')}:${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')} ${String(day).padStart(2, '0')}.${String(month).padStart(2, '0')}.${String(year).padStart(2, '0')}`;
+  }
+
   async GetLogs(filters) {
     const betterAjax = new BetterAjax(
       `api/v1/get_logs/`,
@@ -114,7 +132,7 @@ class Logs {
 
     if (ajaxStatus == true && response.status == true) {
       for (const rowId in response.data) {
-        response.data[rowId].insertion_datetime = ApplyClientTimezone(response.data[rowId].insertion_datetime);
+        response.data[rowId].insertion_datetime = Logs.FormatDateRussian(ApplyClientTimezone(response.data[rowId].insertion_datetime));
       }
 
       return response.data;
@@ -133,7 +151,6 @@ class Logs {
     for (const log of logs) {
       const $newLog = $(`<tr data-id="${log.id}">
                           <td class="steam-id">${log.steam_id}</td>
-                          <td class="steam-id-64">${log.steam_id64}</td>
                           <td class="nickname" data-profile-link="http://steamcommunity.com/profiles/${log.steam_id64}">
                             <div class="nickname-data">
                               <span>${log.nickname}</span>
@@ -267,10 +284,11 @@ class Logs {
     const self = event.data.self;
     const $target = $(event.target);
 
-    if (($target.closest(".logs-filters").length == 0 && $target.closest(".logs-search-bar").length == 0) && !self.$LogsFilters.hasClass("hidden")) {
+    if ($target.closest(".logs-filters").length == 0 && $target.closest(".logs-search-bar").length == 0 && !self.$LogsFilters.hasClass("hidden")) {
+      self.Reset();
+
       const filters = self.GetFilters(self.Offset, self.Limit);
       const logs = await self.GetLogs(filters);
-      self.Reset();
       self.ClearLogs();
       self.AppendLogs(logs);
 
@@ -283,9 +301,10 @@ class Logs {
 
     if (event.key != "Enter") return;
 
+    self.Reset();
+
     const filters = self.GetFilters(self.Offset, self.Limit);
     const logs = await self.GetLogs(filters);
-    self.Reset();
     self.ClearLogs();
     self.AppendLogs(logs);
 

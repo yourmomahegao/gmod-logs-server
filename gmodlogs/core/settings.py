@@ -17,6 +17,10 @@ import os
 load_dotenv()
 
 SAVE_LOG_SECRET = os.environ.get("SAVE_LOG_SECRET", "");
+DB_PASSWORD = os.environ.get("DB_PASSWORD", "");
+DB_USER = os.environ.get("DB_USER", "");
+DB_NAME = os.environ.get("DB_NAME", "");
+DB_ADRESS = os.environ.get("DB_ADRESS", "");
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -85,11 +89,14 @@ WSGI_APPLICATION = 'core.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/6.0/ref/settings/#databases
-
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': DB_NAME,
+        'USER': DB_USER,
+        'PASSWORD': DB_PASSWORD,
+        'HOST': DB_ADRESS,
+        'PORT': '3306',
     }
 }
 

@@ -1,6 +1,5 @@
 server {
-    listen 80;
-    server_name localhost;
+    listen 49263;
 
     location /staticfiles/ {
         root /usr/src/gmod-logs-server/gmodlogs;
