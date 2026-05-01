@@ -16,11 +16,11 @@ import os
 
 load_dotenv()
 
-SAVE_LOG_SECRET = os.environ.get("SAVE_LOG_SECRET", "");
-DB_PASSWORD = os.environ.get("DB_PASSWORD", "");
-DB_USER = os.environ.get("DB_USER", "");
-DB_NAME = os.environ.get("DB_NAME", "");
-DB_ADDRESS = os.environ.get("DB_ADDRESS", "");
+SAVE_LOG_SECRET = os.environ.get("SAVE_LOG_SECRET", "")
+DB_PASSWORD = os.environ.get("DB_PASSWORD", "")
+DB_USER = os.environ.get("DB_USER", "")
+DB_NAME = os.environ.get("DB_NAME", "")
+DB_ADDRESS = os.environ.get("DB_ADDRESS", "")
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -33,7 +33,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = os.environ.get("DJANGO_SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = os.environ.get("DJANGO_DEBUG", False);
+DEBUG = False
 
 ALLOWED_HOSTS = ["*"]
 
