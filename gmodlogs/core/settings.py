@@ -20,7 +20,7 @@ SAVE_LOG_SECRET = os.environ.get("SAVE_LOG_SECRET", "");
 DB_PASSWORD = os.environ.get("DB_PASSWORD", "");
 DB_USER = os.environ.get("DB_USER", "");
 DB_NAME = os.environ.get("DB_NAME", "");
-DB_ADRESS = os.environ.get("DB_ADRESS", "");
+DB_ADDRESS = os.environ.get("DB_ADDRESS", "");
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -95,7 +95,7 @@ DATABASES = {
         'NAME': DB_NAME,
         'USER': DB_USER,
         'PASSWORD': DB_PASSWORD,
-        'HOST': DB_ADRESS,
+        'HOST': DB_ADDRESS,
         'PORT': '3306',
     }
 }
