@@ -1,10 +1,18 @@
 FROM python:3.12-alpine
 WORKDIR /usr/src/gmod-logs-server
 
-RUN apk add build-base && \
-    apk add python3-dev && \
-    apk add --no-cache supervisor && \
-    apk add --no-cache bash
+RUN apk add --no-cache \
+    build-base \
+    gcc \
+    musl-dev \
+    python3-dev \
+    mariadb-dev \
+    libffi-dev \
+    openssl-dev \
+    pkgconf \
+    bash \
+    nginx \
+    supervisor
 
 COPY .docker/requirements.txt .
 
@@ -22,7 +30,6 @@ RUN mkdir -p /usr/src/gmod-logs-server/gmodlogs/media && \
 
 # Setting chmod
 RUN chmod 775 -R /usr/src/gmod-logs-server && \
-    chmod 664 /usr/src/gmod-logs-server/gmodlogs/db.sqlite3 && \
     chown root:root -R /usr/src/gmod-logs-server
 
 COPY .docker/supervisord.conf /etc/supervisor/conf.d/supervisord.conf

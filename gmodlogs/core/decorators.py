@@ -235,15 +235,15 @@ def post_args(post_args):
                 return __ret
                 
             
-            user_data = run_query("""select 
-                                        au.*,
-                                        ag.id as group_id,
-                                        ag."name" as group_name,
-                                        ag.redirect_to as group_redirect_to
-                                    from eduverse.public.auth_sessions ass
-                                    left join eduverse.public.auth_users au on au.id = ass.user_id 
-                                    left join eduverse.public.auth_groups ag on ag.id = au.group_id
-                                    where ass."session" = %s""", args=(session, ))
+            user_data = run_query("""SELECT 
+                    au.*,
+                    ag.id as group_id,
+                    ag.`name` as group_name,
+                    ag.redirect_to as group_redirect_to
+                FROM auth_sessions ass
+                LEFT JOIN auth_users au ON au.id = ass.user_id 
+                LEFT JOIN auth_groups ag ON ag.id = au.group_id
+                WHERE ass.session = %ss""", args=(session, ))
             
             if len(user_data) == 0:
                 __ret = function(*args, **kwargs, session_data={
