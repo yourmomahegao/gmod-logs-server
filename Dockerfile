@@ -34,5 +34,5 @@ RUN chmod 775 -R /usr/src/gmod-logs-server && \
 
 COPY .docker/supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 USER root
-EXPOSE 49263
+EXPOSE 80
 CMD ["/usr/bin/supervisord", "-c", "/etc/supervisor/conf.d/supervisord.conf"]
