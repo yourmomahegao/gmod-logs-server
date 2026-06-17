@@ -97,11 +97,7 @@ class Logs {
     const month = date.getMonth(); // 0–11
     const year = date.getFullYear();
 
-    // Format with leading zeros
-    const dayFormatted = String(day).padStart(2, "0");
-    const monthFormatted = String(month + 1).padStart(2, "0");
-
-    return `${String(hours).padStart(2, '0')}:${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')} ${String(day).padStart(2, '0')}.${String(month).padStart(2, '0')}.${String(year).padStart(2, '0')}`;
+    return `${String(hours).padStart(2, '0')}:${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')} ${String(day).padStart(2, '0')}.${String(month + 1).padStart(2, '0')}.${String(year).padStart(2, '0')}`;
   }
 
   async GetLogs(filters) {
