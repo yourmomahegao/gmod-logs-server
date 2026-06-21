@@ -23,7 +23,8 @@ RUN apk add --no-cache \
     mariadb-connector-c \
     bash \
     nginx \
-    supervisor
+    supervisor \
+    redis
 
 COPY --from=builder /wheels /wheels
 COPY .docker/requirements.txt .
