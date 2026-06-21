@@ -6,6 +6,7 @@ from core.functions import run_query
 from core.decorators import post_args
 from gmodlogs.models import Log, LogAction, LogType
 from datetime import datetime
+from apiv1.tasks import *
 
 @post_args({"query": {"required": False, "type": "str"}, 
             "find_by": {"required": False, "type": "json"},
@@ -153,9 +154,12 @@ def save_log(request, post_args=None):
         if secret_key != SAVE_LOG_SECRET:
             return SafeJsonResponse({"status": False, "message": "Неверный secret_key"})
         
-        run_query("""INSERT INTO gmodlogs_log
-                         (steam_id, steam_id64, nickname, data, type_id, action_id, insertion_datetime)
-                     VALUES
-                         (%s, %s, %s, %s, %s, %s, CURRENT_TIMESTAMP)""", args=(steam_id, steam_id64, nickname, data, type_id, action_id), connection="default")
-
-        return SafeJsonResponse({"status": True, "message": "Лог сохранен"})
+        insert_log.delay(steam_id=steam_id, 
+                         steam_id64=steam_id64, 
+                         nickname=nickname, 
+                         data=data, 
+                         type_id=type_id, 
+                         action_id=action_id, 
+                         connection="default")
+        
+        return SafeJsonResponse(status=202, data={"status": True, "message": "Лог сохранен"})

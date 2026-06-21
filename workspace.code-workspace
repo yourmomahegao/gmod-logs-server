@@ -1,0 +1,33 @@
+{
+  "folders": [
+    {
+      "path": ".",
+      "name": "gmodlogs",
+      "settings": {
+        "files.exclude": {
+          "venv/": true,
+          "requirements.txt": true,
+          "gmodlogs/staticfiles/": true,
+          "gmodlogs/__pycache__/": true,
+          "gmodlogs/db.sqlite3": true,
+          "gmodlogs/lib/": true,
+          "gmodlogs/.vscode/": true,
+          "gmodlogs/.idea/": true
+        }
+      }
+    },
+  ],
+  "settings": {
+    "files.exclude": {
+      "venv/": true,
+      ".gitignore": true,
+      "requirements.txt": true,
+      "gmodlogs/staticfiles/": true,
+      "gmodlogs/__pycache__/": true,
+      "gmodlogs/db.sqlite3": true,
+      "gmodlogs/lib/": true,
+      "gmodlogs/.vscode/": true,
+      "gmodlogs/.idea/": true,
+    },
+  }
+}

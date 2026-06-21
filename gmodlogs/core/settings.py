@@ -16,6 +16,7 @@ import os
 
 load_dotenv()
 
+DEBUG = os.environ.get("DJANGO_DEBUG", False)
 SAVE_LOG_SECRET = os.environ.get("SAVE_LOG_SECRET", "")
 DB_PASSWORD = os.environ.get("DB_PASSWORD", "")
 DB_USER = os.environ.get("DB_USER", "")
@@ -33,7 +34,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = os.environ.get("DJANGO_SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = DEBUG
 
 ALLOWED_HOSTS = ["*"]
 
@@ -51,6 +52,7 @@ INSTALLED_APPS = [
     'compressor',
     'gmodlogs',
     'apiv1',
+    'django_celery_results',
 ]
 
 MIDDLEWARE = [
@@ -151,3 +153,6 @@ STATICFILES_DIRS = [
 
 MEDIA_URL = "/media/"
 MEDIA_ROOT = BASE_DIR / "media"
+
+CELERY_BROKER_URL = "redis://localhost:6379"
+CELERY_RESULT_BACKEND = "redis://localhost:6379"
