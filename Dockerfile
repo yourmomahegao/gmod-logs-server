@@ -1,5 +1,6 @@
-FROM python:3.12-alpine
-WORKDIR /usr/src/gmod-logs-server
+# --- builder: compile C-extensions and wheels ---
+FROM python:3.12-alpine AS builder
+WORKDIR /build
 
 RUN apk add --no-cache \
     build-base \
@@ -9,28 +10,33 @@ RUN apk add --no-cache \
     mariadb-dev \
     libffi-dev \
     openssl-dev \
-    pkgconf \
+    pkgconf
+
+COPY .docker/requirements.txt .
+RUN pip wheel --no-cache-dir --wheel-dir /wheels -r requirements.txt
+
+# --- app: runtime only, no compiler toolchain ---
+FROM python:3.12-alpine
+WORKDIR /usr/src/gmod-logs-server
+
+RUN apk add --no-cache \
+    mariadb-connector-c \
     bash \
     nginx \
     supervisor
 
+COPY --from=builder /wheels /wheels
 COPY .docker/requirements.txt .
+RUN pip install --no-cache-dir --no-index --find-links /wheels -r requirements.txt && \
+    rm -rf /wheels
 
-RUN pip install --no-cache-dir -r requirements.txt
-
-
-# Copying project
 COPY gmodlogs /usr/src/gmod-logs-server/gmodlogs
 COPY .docker/.env.prod /usr/src/gmod-logs-server/gmodlogs/.env
-COPY .docker/requirements.txt /usr/src/gmod-logs-server
 
 RUN mkdir -p /usr/src/gmod-logs-server/gmodlogs/media && \
     chmod 777 -R /usr/src/gmod-logs-server/gmodlogs/media && \
-    chown root:root -R /usr/src/gmod-logs-server/gmodlogs/media
-
-# Setting chmod
-RUN chmod 775 -R /usr/src/gmod-logs-server && \
-    chown root:root -R /usr/src/gmod-logs-server
+    chmod 775 -R /usr/src/gmod-logs-server && \
+    chown -R root:root /usr/src/gmod-logs-server
 
 COPY .docker/supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 USER root
