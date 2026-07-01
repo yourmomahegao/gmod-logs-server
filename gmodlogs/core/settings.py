@@ -16,7 +16,7 @@ import os
 
 load_dotenv()
 
-DEBUG = os.environ.get("DJANGO_DEBUG", False)
+DEBUG = os.environ.get("DJANGO_DEBUG", "") == 'True'
 SAVE_LOG_SECRET = os.environ.get("SAVE_LOG_SECRET", "")
 DB_PASSWORD = os.environ.get("DB_PASSWORD", "")
 DB_USER = os.environ.get("DB_USER", "")
@@ -32,9 +32,6 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = os.environ.get("DJANGO_SECRET_KEY")
-
-# SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = DEBUG
 
 ALLOWED_HOSTS = ["*"]
 
